@@ -56,10 +56,13 @@ const Login = async (req, res) => {
 };
   
 const updateUser = async (req, res) => {
+  console.log(req.params.id);
+  console.log(req.body);
     try {
       const user = await User.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
       }).select("-password");
+      console.log(user)
       if (!user) {
         return res.status(404).send({ error: "Utilisateur introuvable" });
       }
